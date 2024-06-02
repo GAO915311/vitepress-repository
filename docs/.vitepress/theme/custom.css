@@ -1,0 +1,27 @@
+/* .vitepress/theme/custom.css */
+:root {
+    --vp-c-brand-1: #646cff;
+    --vp-c-brand-2: #747bff;
+    --vp-sidebar-width: 300px;
+    --vp-layout-max-width: 1700px;
+    --vp-code-font-size: 17px;
+    --vp-custom-block-font-size: 17px;
+    --vp-custom-block-code-font-size: 17px;
+
+    .content {
+        font-size: 17px;
+    }
+
+    .VPDoc.has-aside .content-container[data-v-39a288b8] {
+        max-width: 1000px
+    }
+}
+
+
+
+/*.VPDoc.has-aside .content-container[data-v-10119189] {*/
+/*    max-width: 1000px*/
+/*}*/
+
+
+
