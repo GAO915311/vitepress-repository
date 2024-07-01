@@ -1,0 +1,214 @@
+@use '../../utils';
+
+body {
+  --file-folding-offset: 28px;
+  --folder-color-rgb: 245, 180, 0;
+  --folder-color: rgb(var(--setting-color-dirs, var(--folder-color-rgb)));
+  --folder-hover-color: rgba(var(--setting-color-dirs, var(--folder-color-rgb)),
+      0.24);
+  --nav-item-size: 0.9rem;
+  --line-height-tight: 1.6;
+  --nav-indentation-guide-color: hsla(var(--accent-h), 20%, 50%, 0.2);
+  --nav-indentation-guide-width: 1.8px;
+}
+
+.theme-light {
+  --folder-inactive: 85%;
+}
+
+.theme-dark {
+  --folder-inactive: 70%;
+}
+
+.nav-file-title.is-active:not(.is-selected) {
+  color: var(--text-on-accent);
+}
+
+body:not(.is-grabbing) :is(.nav-file-title.is-being-dragged, .nav-folder-title.is-being-dragged),
+.nav-file-title.is-being-dragged,
+.nav-folder-title.is-being-dragged {
+  background-color: var(--accent-inactive);
+  color: var(--text-normal);
+}
+
+.workspace-leaf-content[data-type='file-explorer'] {
+  --line-height-tight: var(--explorer-item-height, 1.6);
+}
+
+body.explorer-vault-name-position .workspace-leaf-content[data-type='file-explorer'] {
+  .nav-header {
+    position: absolute;
+    width: fit-content;
+    right: 0;
+    background-color: hsl(var(--background-secondary-hsl));
+    z-index: calc(var(--layer-cover) + 1);
+  }
+
+  .nav-buttons-container {
+    justify-content: flex-end;
+  }
+
+  .nav-files-container .mod-root {
+    padding-top: var(--size-4-12);
+
+    & > .nav-folder-title {
+      position: fixed;
+      height: calc(var(--header-height) + var(--size-2-1));
+      line-height: 2;
+      top: var(--header-height);
+      left: var(--size-4-3);
+      right: 0;
+      transform: translate(calc(-1 * var(--size-4-5)), calc(-1 * var(--size-4-10)));
+      z-index: var(--layer-cover);
+      color: var(--color-accent-2);
+      font-size: 1rem;
+      font-weight: bold;
+      background-color: hsl(var(--background-secondary-hsl));
+
+      &:hover {
+        background-color: hsl(var(--background-secondary-hsl)) !important;
+      }
+
+      & > .tree-item-inner {
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+body.theme-dark.explorer-icon .is-active .nav-file-tag {
+  --nav-item-background-active: var(--text-on-accent);
+}
+
+#{utils.with-no-plugin('.explorer-icon')} {
+  .workspace-leaf-content[data-type='file-explorer'] .nav-files-container .mod-root {
+    .nav-folder {
+
+      &-title {
+        &:hover {
+          background-color: var(--folder-hover-color);
+        }
+
+        &-content {
+          padding-left: var(--size-2-1);
+        }
+      }
+
+      & > .nav-folder-children {
+        transition: var(--animation);
+
+        &:hover {
+          --nav-indentation-guide-color: var(--accent-inactive);
+        }
+      }
+
+      &-collapse-indicator {
+        cursor: pointer;
+        height: fit-content;
+
+        svg {
+          line-height: var(--line-height-tight);
+          width: 1rem;
+          height: 1rem;
+          background-color: var(--folder-color);
+          display: inline-block;
+          translate: 0 calc(-1 * var(--size-2-1));
+          // add icon in icons.scss
+        }
+      }
+
+      &.is-collapsed .collapse-icon svg.svg-icon {
+        transform: none;
+        filter: brightness(var(--folder-inactive));
+        transition: var(--animation);
+      }
+    }
+
+    .nav-file {
+      --nav-item-background-hover: hsl(var(--accent-h), calc(var(--accent-s) * 1.2), min(var(--accent-l) * 1.5, 90%), 50%);
+
+      &-title {
+        &-content {
+          padding-left: var(--size-2-1);
+        }
+
+        &:not([data-path$='excalidraw.md']):not([data-path$='excalidraw'])::before {
+          content: ' ';
+          position: absolute;
+          width: 1rem;
+          height: 1rem;
+          opacity: 0.8;
+          flex-shrink: 0;
+          translate: calc(1px - var(--size-4-5)) 15%;
+          background-color: var(--accent-active);
+          // add icon in icons.scss
+        }
+
+        &:is([data-path$='excalidraw.md'], [data-path$='excalidraw']) .nav-file-tag {
+          position: absolute;
+          translate: calc(-1 * var(--size-4-5));
+          top: var(--size-2-3);
+        }
+
+        &.is-active:not(.is-selected) {
+          color: var(--text-on-accent);
+
+          &:first-child::before {
+            background-color: var(--text-on-accent);
+          }
+
+          .nav-file-title-content {
+            color: var(--text-on-accent);
+          }
+        }
+      }
+
+      &-tag {
+        font-size: 0.6rem;
+        margin-left: 0;
+        margin-right: var(--size-4-2);
+        line-height: 2;
+      }
+
+      &-title .nav-file-tag {
+        background-color: var(--accent-active);
+        color: var(--text-on-accent);
+      }
+
+      &-title.is-active .nav-file-tag {
+        background-color: hsl(var(--background-secondary-hsl), 0.9);
+        color: var(--nav-item-background-active);
+      }
+
+      &-title-content + .nav-file-tag {
+        margin-left: var(--size-2-3);
+      }
+    }
+  }
+}
+
+/* 参考 https://github.com/Akifyss/obsidian-border */
+:is(body.explorer-nav-decoration .nav-file-title, body.setting-nav-decoration .vertical-tab-nav-item) {
+  position: relative;
+
+  &.is-active::after {
+    height: calc(100% - var(--size-4-2));
+    transform: translateY(-50%);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    width: var(--size-4-1);
+    height: 0%;
+    border-radius: var(--radius-s);
+    background: var(--accent-inactive);
+  }
+}
+
+body.explorer-title-wrap :is(.nav-file-title-content, .nav-folder-title-content) {
+  overflow: visible;
+  white-space: pre-wrap;
+}

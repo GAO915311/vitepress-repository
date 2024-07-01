@@ -1,0 +1,47 @@
+/* #region document-search */
+@use './document-search.scss';
+/* #endregion document-search */
+
+/* #region modal */
+@use './modal.scss';
+/* #endregion modal */
+
+/* #region scrollbar */
+@use './scrollbar.scss';
+/* #endregion scrollbar */
+
+/* #region tab */
+@use './tab.scss';
+/* #endregion tab */
+
+/* #region titlebar */
+@use './titlebar.scss';
+/* #endregion titlebar */
+
+/* #region print */
+@use './print.scss';
+/* #endregion print */
+
+/* #region statusbar */
+@use './statusbar.scss';
+/* #endregion statusbar */
+
+/* #region icons */
+@use './icons.scss';
+/* #endregion icons */
+
+/* #region notice, tooltips */
+@use './message.scss';
+/* #endregion message */
+
+/* #region background image */
+@use './bg.scss';
+/* #endregion background */
+
+/* #region labeled-navigator */
+@use './labeled-nav.scss';
+/* #endregion labeled-navigator */
+
+/* #region [[panel]] */
+@use './panel';
+/* #endregion [[panel]] */

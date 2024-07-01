@@ -1,0 +1,121 @@
+$base-panel: '.vertical-tab-header', '.vertical-tab-content',
+  '.nav-files-container', '.workspace-leaf-content:not([data-type*="graph"],[data-type*="pdf"]) .view-content', '.search-result-container',
+  '.git-view-body', '.suggestion-container .suggestion', '.prompt-results',
+  '.community-modal-search-results-wrapper', '.community-modal-info',
+  '.modal:not(.mod-settings, .mod-community-theme, .mod-community-plugin)',
+  '.tag-container', '.backlink-pane';
+
+$editor: ".markdown-source-view .cm-scroller",
+  '.markdown-preview-view';
+
+$horizon: '.workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container',
+  '.markdown-embed-content .markdown-rendered', 'pre code';
+
+$kanban: '.kanban-plugin__board', '.kanban-plugin__lane-items', '.kanban-plugin__autocomplete';
+
+$excalidraw: '.excalidraw-wrapper :is(.App-menu .Stack .Island.App-menu__left,.scrollbar)',
+  '.excalidraw-contextMenuContainer .popover';
+
+$janitor: '.janitor-scan-results';
+
+$calendar: ".workspace-leaf-content[data-type='calendar'] .view-content";
+
+$plugins: $calendar, $janitor, $excalidraw, $kanban;
+
+@property --scrollbar-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #0000;
+}
+/* ! `overflow: overlay` is deprecated, Chrome >= 114 (Obsidian 1.4) is equal to `overflow: auto` */
+/* !Chrome >= 121 no longer support `-webkit-scrollbar-*`, no effect currently */
+/* usage of `@property`: https://stackoverflow.com/a/74050413/20058211 */
+/* usage of `-webkit-text-fill-color`: https://stackoverflow.com/a/46304690/20058211 */
+body:not(.is-mobile) {
+
+  $base-color: hsla(var(--color-accent-hsl), 24%);
+  $hover-color: hsla(var(--color-accent-hsl), 40%);
+  $active-color: hsla(var(--color-accent-hsl), 64%);
+
+  .mod-settings :is(.vertical-tab-content, .vertical-tab-header){
+    scrollbar-gutter: stable;
+  }
+  &.scrollbar-hover-accent {
+    --setting-scrollbar-hover: #{$hover-color};
+  }
+
+  &.scrollbar-hover-expand ::-webkit-scrollbar-thumb {
+
+    &:hover,
+    &:active {
+      border-width: var(--size-2-1) !important;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: var(--size-4-3) !important;
+    height: var(--size-4-3) !important;
+    background-color: transparent !important;
+
+    &-track {
+      background-color: transparent !important;
+      box-shadow: none !important;
+    }
+
+    &-thumb {
+      border-radius: var(--size-2-3) !important;
+      border: 3.6px solid transparent !important;
+      background-color: var(--scrollbar-color) !important;
+
+      &:hover {
+        // embed markdown's scrollbar color won't change until mouse leave the editor
+        // same --scrollbar-color cause it
+        // when the mouse leave embed card and in editor's hover, it won't change
+        --scrollbar-color: var(--setting-scrollbar-hover);
+      }
+
+      &:active {
+        --scrollbar-color: #{$active-color};
+      }
+    }
+  }
+
+  &:not(.scrollbar-movein-animation-enable) {
+    --scrollbar-color: #{$base-color};
+  }
+
+  &.scrollbar-movein-animation-enable {
+    :is(#{$base-panel}, #{$editor}, #{$horizon}, #{$plugins}) {
+      transition: --scrollbar-color var(--animation);
+
+      &:hover {
+        --scrollbar-color: #{$base-color};
+      }
+    }
+
+    textarea {
+      color: transparent;
+      transition: color var(--animation);
+      -webkit-text-fill-color: var(--text-normal);
+
+      &:hover {
+        color: #{$base-color};
+      }
+
+      * {
+        -webkit-text-fill-color: initial;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        box-shadow: 0 0 0 10px inset;
+        border-width: 3.2px;
+        background-clip: content-box;
+        background-color: transparent !important;
+      }
+    }
+  }
+}
+
+body.scrollbar-hide :not([style="overflow-x: auto;"])::-webkit-scrollbar {
+  display: none !important;
+}

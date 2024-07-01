@@ -1,0 +1,168 @@
+body.tab-float {
+  --tab-radius: var(--size-2-3);
+
+  .workspace-tab-header-container {
+    --tab-outline-width: 0 !important;
+  }
+
+  .mod-root .workspace-tab-header-container-inner {
+    margin-top: var(--size-4-1);
+    padding-bottom: var(--size-4-1);
+    padding-left: var(--size-4-1);
+  }
+
+  .mod-root {
+    .workspace-tab-header {
+      padding-block: 0 !important;
+      transition: color var(--animation), width var(--animation);
+
+      &.is-active {
+        --tab-radius-active: var(--size-2-3);
+        box-shadow: var(--shadow-s);
+        border: 1px solid var(--color-base-30);
+      }
+
+      .workspace-tab-header-inner-close-button {
+        padding: var(--size-2-1);
+
+        &:hover {
+          background-color: var(--frame-background-color);
+        }
+      }
+    }
+
+    .workspace-tabs:not(.mod-stacked):not(.mod-active) .workspace-tab-header.is-active {
+      --tab-background-active: hsla(var(--background-primary-hsl), 0.5);
+    }
+  }
+
+  &.theme-dark .mod-root .workspace-tab-header.is-active {
+    box-shadow: none;
+  }
+
+  .workspace-split.mod-root .workspace-tab-header.is-active {
+
+    &::before,
+    &::after {
+      box-shadow: none;
+    }
+  }
+
+  .workspace-tab-header-new-tab {
+    padding-top: var(--size-4-1);
+    margin-left: calc(var(--size-4-3) * -1);
+  }
+}
+
+.view-header-title-parent {
+  &:empty+.view-header-title {
+    max-width: 70%;
+    text-align: center;
+    cursor: text;
+  }
+
+  &:not(:empty)+.view-header-title:after {
+    content: "";
+    width: 20%;
+    inset-block: 0;
+    position: absolute;
+    cursor: text;
+  }
+}
+
+body.tab-show-close-all .mod-root .workspace-tab-header,
+body.tab-show-close-part .mod-root .workspace-tab-header:not(.is-active) {
+  .workspace-tab-header-inner-close-button {
+    display: none;
+  }
+
+  &:hover .workspace-tab-header-inner-close-button {
+    display: inherit;
+  }
+}
+
+body.tab-title-bar-text-small .view-header {
+  --file-header-font-size: calc(var(--font-ui-smaller) - var(--size-2-1));
+}
+
+body.tab-title-bar-text-hidden .workspace-leaf-content:not([data-type='excalidraw']) .view-header-title-container {
+  opacity: 0;
+  transition: var(--animation);
+  transition-delay: var(--animation-delay);
+
+  &:hover {
+    opacity: 1;
+    transition-delay: 0s;
+  }
+}
+
+body.tab-title-bar-round {
+  .workspace-leaf-content:not([data-type='excalidraw']) {
+    .view-header {
+      margin: var(--size-4-1);
+      margin-bottom: 0;
+      padding: 0 var(--size-2-3) !important;
+      border: var(--size-2-1) solid var(--background-modifier-hover);
+      border-radius: var(--radius-m);
+      transition: var(--animation);
+      width: calc(100% - var(--size-4-2)) !important;
+      background-color: hsl(var(--background-secondary-hsl));
+
+      .view-header-title-container:after {
+        content: none;
+      }
+    }
+  }
+
+  .workspace-leaf.mod-active .workspace-leaf-content:not([data-type='excalidraw']) .view-header {
+    background-color: var(--md-container-bg);
+  }
+
+  &.tab-title-bar-shadow .workspace-leaf.mod-active .workspace-leaf-content:not([data-type='excalidraw']) .view-header {
+    box-shadow: 0 0 var(--size-2-1) var(--background-modifier-box-shadow);
+  }
+}
+
+/* 切换标签动画，参考 https://github.com/hydescarf/Obsidian-Theme-Mado-Miniflow */
+body .workspace-split .workspace-tabs:not(.mod-stacked) .workspace-leaf-content:not([data-type='pdf']) .view-content,
+.workspace-leaf-content:not(:has(.view-content)) {
+  animation: slide-up var(--animation) forwards;
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(0%);
+    opacity: 0;
+  }
+
+  15% {
+    transform: translateY(0.1rem);
+    opacity: 0;
+  }
+
+  25% {
+    transform: translateY(0.15rem);
+  }
+
+  45% {
+    opacity: 0.5;
+  }
+
+  65% {
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.is-sidedock-collapsed {
+  opacity: 0;
+  transition: var(--animation);
+}
+
+.search-result-file-matches {
+  border-radius: var(--radius-m);
+}

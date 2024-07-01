@@ -1,0 +1,155 @@
+:is(body, .print .markdown-rendered) {
+  --link-color-rgb: var(--setting-link-internal-color, var(--color-blue-rgb));
+  --link-external-color-rgb: var(--setting-link-external-color, var(--color-orange-rgb));
+  --link-color: rgba(var(--link-color-rgb), var(--color-opacity));
+  --link-color-hover: var(--link-color);
+  --link-color-underline: var(--setting-link-internal-color-underline, var(--link-color));
+  --link-external-color: rgba(var(--link-external-color-rgb), var(--color-opacity));
+  --link-external-color-hover: var(--link-external-color);
+  --link-external-color-underline: var(--setting-link-external-color-underline, var(--link-external-color));
+  --link-unresolved-decoration-color: var(--link-unresolve-color);
+  --link-footnote: var(--color-purple);
+  --link-text-size: var(--font-text-size)
+}
+
+@mixin hover-underline($color, $underline) {
+  font-size: var(--link-text-size);
+  box-shadow: inset 0 -0.1em 0 $underline;
+  text-decoration: none !important;
+  transition: var(--animation);
+  color: $color !important;
+
+  &:hover,
+  &:focus {
+    box-shadow: inset 0 -1.3em 0 $underline;
+    --link-color: var(--setting-link-internal-color-hover, var(--text-on-accent));
+    --link-external-color: var(--setting-link-external-color-hover, var(--text-on-accent));
+  }
+}
+
+@mixin hover-base($color, $underline) {
+  transition: var(--animation);
+  color: rgba($color, var(--color-opacity));
+  border-radius: var(--radius-s);
+  text-underline-offset: var(--size-2-1);
+  text-decoration-color: $underline;
+
+  &:hover {
+    background-color: rgba($color, 0.15);
+  }
+
+  &:active {
+    background-color: rgba($color, 0.35);
+  }
+}
+
+.cm-hmd-footnote .cm-underline {
+  color: var(--link-footnote) !important;
+  font-size: var(--footnote-size);
+  text-decoration-color: var(--link-footnote) !important;
+  pointer-events: none;
+}
+
+.is-unresolved {
+  transition: var(--animation);
+
+  &:hover {
+    --link-color-hover: rgba(var(--link-color-rgb), 0.6) !important;
+  }
+}
+
+body .cm-s-obsidian .cm-url {
+  text-decoration: none;
+}
+
+.cm-s-obsidian .cm-formatting-link-string + span.cm-url {
+  color: var(--link-color);
+}
+
+body span:is(.cm-formatting-link, .cm-formatting-link-string) {
+  color: rgba(var(--color-green-rgb), 0.6) !important;
+}
+
+body:not(.link-hover-expand) {
+  :is(a.external-link, .cm-link .cm-underline, .cm-url:not(.cm-string) .cm-underline) {
+    @include hover-base(var(--link-external-color-rgb), var(--link-external-color-underline));
+  }
+
+  :is(a.internal-link:not(.is-unresolved), .cm-hmd-internal-link>.cm-underline) {
+    @include hover-base(var(--link-color-rgb), var(--link-color-underline));
+  }
+
+}
+
+span:is(.cm-url, .cm-link, .cm-hmd-internal-link, .cm-formatting-link.cm-url):hover {
+  text-decoration: none;
+}
+
+body.link-hover-expand {
+  .cm-url {
+    --link-external-decoration: none;
+    --link-external-decoration-hover: none;
+  }
+
+  .cm-link {
+    --link-external-decoration-hover: none;
+  }
+
+  .cm-hmd-internal-link > .cm-underline {
+    --link-decoration-hover: none;
+  }
+
+  :is(a.external-link:not(.is-unresolved), :is(.cm-link, .cm-url)>.cm-underline) {
+    @include hover-underline(var(--link-external-color), var(--link-external-color-underline));
+  }
+
+  :is(a.internal-link:not(.is-unresolved), .cm-hmd-internal-link>.cm-underline) {
+    @include hover-underline(var(--link-color), var(--link-color-underline));
+  }
+
+  :is(.cm-hmd-internal-link, .cm-link) {
+    transition: color var(--animation);
+  }
+}
+
+body.link-icon {
+  :is(:is(.markdown-source-view, .markdown-preview-view) a.internal-link:not(.is-unresolved), .cm-hmd-internal-link>.cm-underline)::before {
+    content: '';
+    display: inline-block;
+    transition: var(--animation);
+    transform: translateY(var(--size-2-1));
+    width: calc(var(--link-text-size) - var(--size-2-1));
+    height: calc(var(--link-text-size) - var(--size-2-1));
+    margin-inline: var(--size-2-1);
+    background-color: var(--link-color);
+    // add icon in icons.scss
+  }
+
+  &:not(.link-click-to-edit-in-live-preview) {
+    :is(:is(.markdown-source-view, .markdown-preview-view) a.external-link:not(.is-resolved), :is(.cm-link:not(.cm-hmd-footnote, .cm-escape), .cm-url)>.cm-underline):not(.cm-escape+.cm-link .cm-underline)::before {
+      content: '';
+      display: inline-block;
+      transition: var(--animation);
+      width: calc(var(--link-text-size) - var(--size-4-1));
+      height: calc(var(--link-text-size) - var(--size-4-1));
+      margin-left: var(--size-2-1);
+      margin-right: var(--size-2-1);
+      background-color: var(--link-external-color);
+      // add icon in icons.scss
+    }
+
+    a.external-link {
+      background-image: none;
+      background-size: unset;
+      padding-right: 0;
+    }
+
+    span.external-link {
+      display: none;
+    }
+  }
+}
+
+body.link-click-to-edit-in-live-preview :is(.cm-url, .cm-link, .cm-hmd-internal-link) .cm-underline{
+  pointer-events: none;
+}

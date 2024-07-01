@@ -4,7 +4,14 @@ outline: deep
 
 # Runtime API Examples
 
-新的挑战开始了。
+## 使用策略
+VitePress 的补充语法
+
+:tada
+
+:::tip
+hello world
+:::
 
 This page demonstrates usage of some of the runtime APIs provided by VitePress.
 

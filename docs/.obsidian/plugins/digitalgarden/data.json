@@ -1,0 +1,42 @@
+{
+  "githubRepo": "my-repository",
+  "githubToken": "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",
+  "githubUserName": "GAO915311",
+  "gardenBaseUrl": "https://my-repository-phi-ten.vercel.app",
+  "prHistory": [
+    "https://github.com/GAO915311/my-repository/pull/5"
+  ],
+  "baseTheme": "light",
+  "theme": "{\"name\":\"Yue\",\"author\":\"Gixo\",\"repo\":\"thegixo/YueObsidian\",\"screenshot\":\"assets/main-demo.png\",\"modes\":[\"light\",\"dark\"],\"cssUrl\":\"https://raw.githubusercontent.com/thegixo/YueObsidian/HEAD/theme.css\"}",
+  "faviconPath": "",
+  "noteSettingsIsInitialized": true,
+  "siteName": "Digital Garden",
+  "slugifyEnabled": true,
+  "noteIconKey": "dg-note-icon",
+  "defaultNoteIcon": "",
+  "showNoteIconOnTitle": true,
+  "showNoteIconInFileTree": true,
+  "showNoteIconOnInternalLink": true,
+  "showNoteIconOnBackLink": true,
+  "showCreatedTimestamp": true,
+  "createdTimestampKey": "dg-created",
+  "showUpdatedTimestamp": true,
+  "updatedTimestampKey": "dg-updated",
+  "timestampFormat": "MMM dd, yyyy h:mm a",
+  "styleSettingsCss": "",
+  "pathRewriteRules": "",
+  "customFilters": [],
+  "contentClassesKey": "dg-content-classes",
+  "defaultNoteSettings": {
+    "dgHomeLink": true,
+    "dgPassFrontmatter": true,
+    "dgShowBacklinks": true,
+    "dgShowLocalGraph": true,
+    "dgShowInlineTitle": true,
+    "dgShowFileTree": true,
+    "dgEnableSearch": true,
+    "dgShowToc": true,
+    "dgLinkPreview": true,
+    "dgShowTags": true
+  }
+}

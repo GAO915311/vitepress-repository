@@ -1,0 +1,10 @@
+// align left
+.nav-buttons-container {
+  justify-content: flex-start;
+  padding-left: var(--size-4-1);
+}
+
+// increase tree indent
+body {
+  --nav-item-children-padding-left: var(--size-4-2);
+}

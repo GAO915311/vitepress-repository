@@ -1,0 +1,34 @@
+//<body>
+//  <div class="print theme-light">
+//    <div class="markdown-preview-view markdown-rendered">
+//      <ul class="contains-task-list">
+//      </ul>
+//      <p>
+//      </p>
+//      ...
+//    </div>
+//  </div>
+//</body>
+.print {
+  code {
+    white-space: pre-wrap !important;
+  }
+
+  :is(.markdown-preview-view, .markdown-rendered) {
+    background-color: var(--background-primary) !important;
+  }
+
+  pre {
+    &::before {
+      right: var(--size-4-2) !important;
+    }
+
+    code {
+      tab-size: 4;
+    }
+  }
+
+  .markdown-preview-view table {
+    resize: initial;
+  }
+}

@@ -1,0 +1,9 @@
+# npm
+node_modules
+
+# Mac
+.DS_Store
+
+scripts/dir.mjs
+src/snippet.scss
+vault

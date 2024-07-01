@@ -1,0 +1,235 @@
+@use './basic.scss';
+@use './workspace.scss';
+@use './editor.scss';
+@use './plugin.scss';
+
+.mod-settings .vertical-tab-content>.setting-item:nth-child(2)>.setting-item-control>input[type=color] {
+  position: relative;
+
+  &::before {
+    content: 'only change Hue!';
+    font-family: var(--font-interface);
+    position: absolute;
+    width: auto;
+    left: calc((var(--swatch-width) + var(--size-4-12) * 2 + 120%) * -1);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+:is(.style-settings-import, .style-settings-export, .style-settings-copy, .style-settings-download, .style-settings-import-label) {
+  transition: var(--animation);
+  text-decoration: none !important;
+  height: var(--input-height);
+  font-size: var(--font-ui-small);
+  font-family: inherit;
+  font-weight: var(--input-font-weight);
+  color: var(--text-normal) !important;
+  line-height: var(--line-height-normal);
+  padding: 0 0.8em;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  box-shadow: var(--input-shadow);
+  border-radius: var(--input-radius);
+  background-color: var(--interactive-normal);
+
+  &:hover {
+    box-shadow: var(--input-shadow-hover);
+    background-color: var(--interactive-hover);
+  }
+}
+
+.themed-color-wrapper {
+  &>.theme-light {
+    background-color: #eee;
+  }
+
+  &>.theme-dark {
+    background-color: #111;
+  }
+
+  .pickr-reset>button {
+    padding: var(--size-2-3);
+  }
+}
+
+.pickr .pcr-button {
+
+  &::before,
+  &::after {
+    border-radius: var(--radius-s);
+  }
+}
+
+.style-settings-container {
+
+  .setting-item:is([data-id^='setting-accent-h']) {
+    input.slider {
+      height: 0.8em;
+      --hue-slider-sat: 70%;
+      --hue-slider-br: 60%;
+      background: linear-gradient(to right,
+          hsl(0 var(--hue-slider-sat) var(--hue-slider-br)),
+          hsl(30 var(--hue-slider-sat) var(--hue-slider-br)),
+          hsl(60 var(--hue-slider-sat) var(--hue-slider-br)),
+          hsl(90 var(--hue-slider-sat) var(--hue-slider-br)),
+          hsl(120 var(--hue-slider-sat) var(--hue-slider-br)),
+          hsl(150 var(--hue-slider-sat) var(--hue-slider-br)),
+          hsl(180 var(--hue-slider-sat) var(--hue-slider-br)),
+          hsl(210 var(--hue-slider-sat) var(--hue-slider-br)),
+          hsl(240 var(--hue-slider-sat) var(--hue-slider-br)),
+          hsl(270 var(--hue-slider-sat) var(--hue-slider-br)),
+          hsl(300 var(--hue-slider-sat) var(--hue-slider-br)),
+          hsl(330 var(--hue-slider-sat) var(--hue-slider-br)),
+          hsl(360 var(--hue-slider-sat) var(--hue-slider-br)));
+      border-radius: var(--size-2-1);
+    }
+
+    .setting-item-control::before {
+      content: ' ';
+      font-size: 0.7em;
+      text-align: center;
+      white-space: pre-wrap;
+      height: 1.6em;
+      width: 1.6em;
+      color: var(--text-normal);
+      background-color: hsl(var(--setting-accent-h-light, 116), 32%, 58%);
+      position: relative;
+      right: 1em;
+      border-radius: var(--radius-s);
+    }
+  }
+
+  .setting-item[data-id='setting-accent-h-dark'] .setting-item-control::before {
+    background-color: hsl(var(--setting-accent-h-dark, 207), 32%, 58%);
+  }
+}
+
+/* hide option */
+body:not(.line-active-enable) .setting-item[data-id='setting-line-active-color'],
+body:not(.calendar-swap-year-month) .setting-item[data-id='setting-calendar-year-suffix'],
+body:not(.quote-theme) .setting-item:is([data-id='quote-mark'], [data-id='quote-shadow']),
+body:not(.scrollbar-smooth) .setting-item[data-id='scrollbar-smooth-editor'],
+body.bg-default .setting-item[data-id='setting-bg-color'],
+body.scrollbar-hide .setting-item:is([data-id*='scrollbar-hover'], [data-id='scrollbar-movein-animation'], [data-id='scrollbar-gutter']),
+body:not(.status-bar-enable) .setting-item[data-id*='status-bar-style'],
+:is(body.status-bar-scroll, body:not(.status-bar-style-float)) .setting-item[data-id='status-bar-style-center'],
+body:not(.tab-title-bar-round) .setting-item[data-id='tab-title-bar-shadow'],
+body:not(.loading-text) .setting-item[data-id='loading-text-content'],
+body:not(.explorer-icon) .setting-item[data-id='setting-color-dirs'],
+body:not(.search-internal-enable) .setting-item:is([data-id='search-internal-expand-on-focus'], [data-id="search-internal-disable-select-all"]),
+body:not(.color-use-custom) .setting-item[data-id*='color-accent-'],
+body:not(.list-enable) .setting-item:is([data-id*='setting-list-'], [data-id='list-checkbox']),
+body:not(.code-language) .setting-item[data-id='setting-code-language-color'],
+body:not(.code-preview-bg) .setting-item[data-id='setting-code-bg-outer'],
+body:not(.modal-header) .setting-item[data-id='setting-modal-header-title'],
+body:not(.color-use-custom) .setting-item[data-id^='accent-hue'],
+body:not(.color-active-custom-light) .setting-item[data-id='setting-color-active-custom-light'],
+body:not(.color-active-custom-dark) .setting-item[data-id='setting-color-active-custom-dark'],
+body:not(.message-modify) .setting-item[data-id^='setting-message'],
+body:not(.heading-level-enable) .setting-item[data-id^='heading-level-fix'],
+body:not(.heading-color-colorful) .setting-item[data-id='heading-color-custom'],
+body:not(.table-colorful) .setting-item[data-id^='setting-table'],
+body:not(.embed-enable) .setting-item[data-id^='embed-title'],
+body:not(.hr-enable) .setting-item[data-id^='setting-hr-icon'],
+body:not(.tag-outline) .setting-item[data-id='tag-outline-setting'],
+body:not(.tag-colored) .setting-item[data-id='setting-tag-bg'] {
+  display: none;
+
+  &+.style-settings-container {
+    display: none;
+  }
+}
+
+/* 参考 https://github.com/damiankorcz/Prism-Theme */
+div.workspace-leaf-content[data-type="style-settings"] {
+  div.view-content {
+    padding: var(--file-margins);
+
+    body.is-mobile & {
+      padding: var(--size-4-8) var(--size-4-4);
+    }
+  }
+
+  .view-content .style-settings-container .setting-item:not(.setting-item-heading) {
+    body:not(.is-mobile) & {
+      flex-direction: row;
+    }
+  }
+}
+
+.setting-item.setting-item-heading.style-settings-heading {
+  padding: var(--size-4-2);
+  margin: var(--size-4-1) 0;
+  border-radius: var(--radius-m);
+  padding-left: var(--size-4-3);
+
+  &:hover {
+    color: var(--highlight-text-normal);
+    background-color: var(--background-modifier-hover);
+  }
+}
+
+.style-settings-container {
+  padding-bottom: unset;
+
+  .setting-item {
+    padding: var(--size-4-2);
+    padding-left: var(--size-4-6);
+
+    .is-phone & {
+      margin-top: unset;
+    }
+  }
+}
+
+.style-settings-heading[data-level="0"] {
+  background-color: var(--md-container-bg);
+  border: 1px solid hsla(var(--accent-h),
+      var(--accent-s),
+      calc(var(--accent-l) + 4%), 16%) !important;
+
+  &+.style-settings-container .style-settings-collapse-indicator {
+    margin-left: unset;
+  }
+}
+
+:is(.setting-item.setting-item-heading.style-settings-heading, .style-settings-container .style-settings-heading) {
+  border-bottom: unset;
+}
+
+.setting-item-heading .setting-item-description {
+  padding-left: var(--size-4-4);
+}
+
+.setting-item.setting-item-heading.is-collapsed {
+  margin-bottom: unset;
+}
+
+.style-settings-container>.setting-item:last-of-type {
+  padding-bottom: unset;
+  margin-bottom: var(--size-4-4);
+}
+
+:is(.style-settings-heading[data-level="0"] + .style-settings-container, .style-settings-container) {
+  padding-left: var(--size-2-1);
+  margin-left: var(--size-4-4);
+  border-left: var(--nav-indentation-guide-width) solid var(--nav-indentation-guide-color);
+  transition: var(--animation);
+
+  &:hover {
+    border-left-color: var(--accent-active);
+  }
+}
+
+body.modal-item-animation {
+  .style-settings-heading {
+    transition: var(--animation);
+
+    &:hover {
+      transition: none;
+    }
+  }
+}

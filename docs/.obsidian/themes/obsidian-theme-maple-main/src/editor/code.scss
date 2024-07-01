@@ -1,0 +1,401 @@
+@use 'sass:math';
+@use '../utils';
+
+:is(body, .print .markdown-rendered) {
+  --inline-code: var(--setting-code-inline, var(--color-red));
+  --code-background: var(--setting-code-bg, var(--md-container-bg));
+  --code-function: var(--color-orange);
+  --code-important: var(--color-purple);
+  --code-keyword: var(--color-purple);
+  --code-property: var(--color-orange);
+  --code-punctuation: var(--color-blue);
+  --code-string: var(--color-green);
+  --code-tag: var(--color-red);
+  --code-value: var(--color-orange);
+  --code-comment: var(--text-faint);
+  --code-normal: var(--code-preview-base);
+  --code-bg-radius: var(--setting-code-bg-radius, var(--radius-l));
+  --code-bg-border: var(--size-2-1) solid var(--nav-item-background-hover);
+}
+
+#{utils.with-print('.theme-light')} {
+  --code-preview-base: hsl(var(--accent-h),
+      var(--accent-s),
+      calc(var(--accent-l) - 30%));
+  --code-mac-style-header-bg: #333;
+}
+
+#{utils.with-print('.theme-dark')} {
+  --code-preview-base: hsl(var(--accent-h),
+      var(--accent-s),
+      85%);
+  --code-mac-style-header-bg: #000;
+}
+
+.cm-hmd-codeblock.cm-formatting,
+.markdown-rendered code {
+  color: var(--inline-code);
+}
+
+.markdown-rendered code {
+  border: var(--code-bg-border);
+}
+
+.markdown-preview-view pre code {
+  color: var(--code-preview-base);
+  border: none;
+  border-radius: 0;
+}
+
+.cm-inline-code {
+  color: var(--inline-code) !important;
+  border-radius: var(--radius-s);
+  border: var(--code-bg-border);
+
+  &:not(.cm-formatting) {
+    padding-inline: var(--size-2-1);
+  }
+
+  .cm-formatting-code + & {
+    padding: 0;
+  }
+
+  &.cm-header {
+    color: var(--inline-code) !important;
+  }
+}
+
+.cm-formatting-code {
+  &:has(+.cm-inline-code) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 0;
+    padding-left: var(--size-2-1);
+  }
+
+  & + .cm-inline-code {
+    border-radius: 0;
+    border-inline: 0;
+  }
+
+  .cm-inline-code + & {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: 0;
+    padding-right: var(--size-2-1);
+  }
+}
+
+.cm-s-obsidian .cm-line.HyperMD-codeblock {
+  line-height: calc(var(--line-height-normal) - 0.2);
+  color: var(--color-blue) !important;
+  border-left: var(--code-bg-border);
+  border-right: var(--code-bg-border);
+  border-radius: 0 !important;
+
+  .cm-fold-indicator .collapse-indicator {
+    padding-left: var(--size-4-3);
+    padding-right: unset !important;
+    left: calc(var(--size-4-2) * -3);
+    right: unset !important;
+    cursor: pointer;
+  }
+
+  &.HyperMD-codeblock-begin-bg {
+    border-top: var(--code-bg-border);
+    border-top-left-radius: var(--code-bg-radius) !important;
+    border-top-right-radius: var(--code-bg-radius) !important;
+    margin-top: var(--size-2-1) !important;
+  }
+
+  &.HyperMD-codeblock-end-bg {
+    border-bottom: var(--code-bg-border);
+    border-bottom-left-radius: var(--code-bg-radius) !important;
+    border-bottom-right-radius: var(--code-bg-radius) !important;
+    margin-bottom: var(--size-2-1) !important;
+  }
+}
+
+.markdown-source-view.mod-cm6 .cm-embed-block:not(.cm-table-widget) {
+  box-shadow: none !important;
+  border: var(--block-outline-width) solid transparent;
+  border-radius: var(--radius-l) !important;
+  transition: var(--animation);
+
+  &:hover {
+    border-color: var(--accent-active);
+  }
+
+  .edit-block-button {
+    border-radius: var(--radius-m) !important;
+    transition: var(--animation);
+    inset-block: 0.2rem;
+    height: fit-content;
+  }
+
+}
+
+.cm-hmd-codeblock .cm-indent::before {
+  transform: unset !important;
+}
+
+.markdown-source-view.mod-cm6 .code-block-flair:has(svg) {
+  width: calc(var(--size-4-8) - var(--size-4-1));
+  height: calc(var(--size-4-8) - var(--size-4-1));
+  padding: var(--size-4-1);
+
+  svg {
+    width: var(--size-4-5);
+    height: var(--size-4-5);
+  }
+}
+
+code[class*='language-'],
+pre {
+  line-height: calc(var(--line-height-normal) - 0.2);
+}
+
+body .markdown-rendered pre {
+  border-radius: var(--code-bg-radius);
+  border: var(--block-outline-width) solid var(--accent-inactive);
+  transition: var(--animation);
+  overflow-x: hidden;
+
+  &:hover {
+    border-color: var(--accent-active);
+
+    button.copy-code-button {
+      opacity: 1;
+    }
+  }
+
+  .copy-code-button {
+    // add icon in icons.scss
+    width: 1.5rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    opacity: 0;
+    color: transparent;
+    background-color: var(--setting-code-language-color, var(--accent-active));
+    transition: var(--animation);
+    margin: 0;
+    display: block !important;
+    top: var(--size-4-1);
+    right: var(--size-4-1);
+    z-index: 9;
+
+    &:hover {
+      opacity: 1;
+      background-color: var(--text-normal);
+    }
+  }
+}
+
+.code-nowrap {
+  &.scrollbar-gutter-overlay {
+    &:not(.code-mac-style-header) .app-container div pre {
+      padding-bottom: calc(var(--code-size) * var(--line-height-normal) * 0.8) !important;
+    }
+
+    pre code {
+      padding-bottom: var(--size-2-3);
+    }
+  }
+
+  pre code {
+    word-break: normal;
+    word-wrap: break-word;
+    white-space: pre;
+  }
+}
+
+#{utils.with-no-plugin('.code-language')} {
+  .markdown-rendered {
+    $height: 2rem;
+
+    pre {
+      padding: $height 1rem;
+      position: relative;
+
+      &[class*='language-']::before {
+        content: 'unkown language';
+        font-family: var(--font-text);
+        color: var(--setting-code-language-color, var(--inline-code));
+        font-weight: bold;
+        font-size: math.div($height, 2) - 0.1rem;
+        position: absolute;
+        letter-spacing: 0.05rem;
+        text-align: right;
+        right: calc(1.3rem + 2 * var(--size-4-1));
+        top: math.div($height, 15);
+        line-height: var(--line-height-normal);
+        z-index: 9;
+      }
+    }
+
+    $language: C, Properties, Python, Nginx, CSS, Javascript, JS, Typescript, TS,
+      JSP, PHP, Lua, Shell, PowerShell, Flow, Sequence, SQL, YAML, YML, ini, XML,
+      CS, CPP, Java, HTML, TXT, MD, Markdown, Bat, Json, Groovy, SCSS, Bash, Cmd,
+      Latex, Zig, SSML, JSX, TSX, tsconfig, Git, CSharp, CSV, cue, TOML, kt, Kotlin,
+      Go, Rust, Regex, Swift, ABAP, PL/SQL;
+
+    @each $lan in $language {
+      pre[class~='language-#{to-lower-case($lan)}']::before {
+        content: quote($lan);
+      }
+    }
+  }
+}
+
+.markdown-source-view.mod-cm6 .code-block-flair {
+  padding-block: 0;
+  color: var(--color-red);
+  transition: var(--animation);
+
+  &:hover {
+    background-color: var(--nav-item-background-hover);
+  }
+}
+
+.code-theme :is(.markdown-rendered, .markdown-source-view.mod-cm6) {
+  :is(.token:is(.comment, .prolog, .doctype, .cdata), .cm-comment) {
+    color: var(--code-comment);
+  }
+
+  :is(.token:is(.tag, .constant, .symbol, .deleted, .class-name, .maybe-class-name), .cm-tag, .cm-operator) {
+    color: var(--code-tag);
+  }
+
+  :is(.cm-punctuation, .cm-bracket, .cm-hr, .cm-operator) {
+    color: var(--code-punctuation);
+  }
+
+  :is(.token:is(.boolean, .number), .cm-number) {
+    color: var(--code-value);
+  }
+
+  :is(.token:is(.selector, .attr-name, .string, .char, .builtin, .inserted), .cm-qualifier, .cm-string:not(.cm-url), .cm-string-2, .cm-meta:not(.cm-hashtag)) {
+    color: var(--code-string);
+  }
+
+  :is(.token:is(.entity, .parameter, .property, .property-access, .url, .variable), :is(.language-css, .style) .token.string, .cm-def, .cm-number + .cm-variable) {
+    color: var(--code-property);
+  }
+
+  :is(.token:is(.attr-value, .function, .class-name), .cm-property, .cm-attribute) {
+    color: var(--code-function);
+  }
+
+  :is(.token:is(.keyword, .constant, .unit, .builtin, .atrule), .cm-keyword, .cm-builtin, .cm-type, .cm-atom) {
+    color: var(--code-keyword);
+  }
+
+  :is(.token:is(.regex, .important)) {
+    color: var(--code-important);
+  }
+
+  :is(.cm-variable, .cm-variable-2, .cm-variable-3) {
+    color: var(--code-normal);
+  }
+
+  :is(.cm-variable-2, .cm-variable-3) {
+    opacity: 0.7;
+  }
+}
+
+.code-mac-style-header:not(:has(.print)) .markdown-rendered pre {
+  border: none;
+  padding-top: calc(var(--code-size) * var(--line-height-normal) * 1.5);
+  padding-bottom: calc(var(--code-size) * var(--line-height-normal) * 0.5) !important;
+
+  &[class*='language-']::before {
+    color: var(--setting-code-language-color, var(--accent-active));
+  }
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: calc(var(--code-size) * var(--line-height-normal) * 1.1);
+    background-color: var(--code-mac-style-header-bg);
+    top: 0;
+    left: 0;
+    position: absolute;
+  }
+
+  $light-size: calc(var(--code-size) - var(--size-2-1));
+
+  code::before {
+    content: '';
+    width: $light-size;
+    height: $light-size;
+    position: absolute;
+    left: var(--size-4-4);
+    top: calc($light-size * var(--line-height-normal) * 0.7 - var(--code-size) / 3);
+    border-radius: 50%;
+    z-index: 9;
+    background-color: rgba(255, 94, 92, var(--color-opacity));
+    box-shadow: var(--size-4-5) 0 0 0 rgba(255, 187, 78, var(--color-opacity)),
+      calc(var(--size-4-5) * 2) 0 0 0 rgba(81, 188, 0, var(--color-opacity));
+  }
+
+  .copy-code-button:hover {
+    background-color: var(--accent-inactive);
+  }
+}
+
+.code-line-number .cm-contentContainer {
+  counter-reset: code-line;
+
+  .cm-line.HyperMD-codeblock {
+    padding-left: var(--size-4-12);
+
+    &:not(.HyperMD-codeblock-begin):not(.HyperMD-codeblock-end) {
+      &::before {
+        counter-increment: code-line;
+        content: counter(code-line);
+        position: absolute;
+        text-align: right;
+        width: var(--size-4-8);
+        left: 0;
+        color: var(--accent-inactive);
+      }
+
+      &.cm-active::before {
+        color: var(--accent-active);
+      }
+    }
+
+    &-end {
+      counter-reset: code-line;
+    }
+  }
+}
+
+.code-preview-bg {
+  --code-bg-s: 50%;
+  --code-bg-l: 85%;
+
+  .markdown-preview-view .markdown-preview-section {
+    div:has(>pre:not([class*="frontmatter"])) {
+      padding: var(--size-4-4) var(--size-4-8);
+      margin-block: var(--size-4-4);
+      border-radius: var(--radius-l);
+      background-image: var(--setting-code-bg-outer, linear-gradient(-30deg,
+            hsl(calc(var(--accent-h) + 145), var(--code-bg-s), var(--code-bg-l)),
+            hsl(calc(var(--accent-h) + 115), var(--code-bg-s), var(--code-bg-l)),
+            hsl(calc(var(--accent-h) + 90), var(--code-bg-s), var(--code-bg-l)),
+            hsl(calc(var(--accent-h) + 65), var(--code-bg-s), var(--code-bg-l)),
+            hsl(calc(var(--accent-h) + 35), var(--code-bg-s), var(--code-bg-l))));
+    }
+
+    pre:not([class*="frontmatter"]) {
+      --code-background: var(--setting-code-bg, hsl(var(--background-secondary-hsl)));
+      border-width: 0;
+    }
+  }
+}
+
+.theme-dark .markdown-preview-view .markdown-preview-section div:has(>pre:not([class*="frontmatter"])) {
+  --code-bg-s: 20%;
+  --code-bg-l: 45%;
+}

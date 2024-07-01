@@ -1,0 +1,173 @@
+.cm-formatting-list-ul,
+.cm-formatting-list-ol {
+  padding-inline-start: 0.4rem;
+}
+
+body.list-enable {
+  $marker-color: var(--setting-list-marker, var(--accent-active));
+  $marker-size: calc(var(--font-text-size) / 3 + var(--size-2-1));
+  --list-marker-color: #{$marker-color};
+  --list-marker-color-alt: var(--setting-list-marker-alt, var(--list-marker-color));
+  --checkbox-marker-color: var(--text-on-accent);
+  --checkbox-border-color: var(--setting-list-checkbox-color, var(--accent-inactive));
+  --checkbox-border-color-hover: var(--setting-list-checkbox-color-hover, var(--accent-active));
+
+  .cm-formatting-list-ol,
+  li::marker {
+    font-family: var(--font-monospace);
+  }
+
+  :is(.markdown-source-view, .markdown-preview-view) .task-list-item-checkbox {
+    border-width: var(--size-2-1);
+  }
+
+  .markdown-source-view .task-list-item-checkbox {
+    margin-inline-start: 0.7rem;
+    margin-inline-end: var(--size-4-1);
+  }
+
+  .markdown-preview-view .task-list-item-checkbox {
+    margin-inline-start: calc(var(--checkbox-size) * -1.3);
+  }
+
+  // guide line and indicator
+  .collapse-indicator {
+    --cursor: pointer;
+  }
+
+  .markdown-source-view.mod-cm6 {
+
+    .cm-indent::before {
+      transform: translateX(10px);
+    }
+
+    .HyperMD-task-line .collapse-indicator {
+      right: 0.1rem !important;
+    }
+  }
+
+  // indicator
+  li .list-collapse-indicator {
+    margin-inline-start: 0 !important;
+    padding-inline-end: 1.2rem !important;
+    transform: translateX(-2.1rem);
+  }
+
+  ol li .list-collapse-indicator {
+    transform: translateX(-3rem);
+  }
+
+  .contains-task-list .list-collapse-indicator {
+    transform: translateX(-2.4rem);
+  }
+
+  // padding
+  .markdown-rendered {
+    ul > li {
+      margin-inline-start: calc(var(--font-text-size) * 2 + 0.25rem);
+    }
+
+    div > ul:is(.has-list-bullet, .contains-task-list) {
+      margin-inline-start: calc(var(--size-4-3) * -1);
+    }
+
+    ol {
+      --list-indent: calc(var(--font-text-size) - 0.25rem);
+
+      & > li {
+        margin-inline-start: calc(var(--font-text-size) + 0.25rem);
+      }
+
+      li > ol {
+        padding-left: calc(var(--font-text-size));
+
+        &::before {
+          left: calc(var(--font-text-size) * -1.5);
+        }
+      }
+    }
+  }
+
+  :is(.markdown-rendered, div) > ul {
+    --list-indent: 0;
+  }
+
+  // bullet style
+  --list-bullet-size: #{$marker-size};
+  $optical-factor: 0.9;
+
+  .HyperMD-list-line-2 .list-bullet {
+    --list-marker-color: transparent;
+    --list-bullet-border: #{$marker-color} var(--size-2-1) solid;
+    --list-bullet-size: calc(#{$marker-size} - var(--size-2-1));
+  }
+
+  .HyperMD-list-line-3 .list-bullet {
+    --list-bullet-radius: 0;
+    --list-marker-color: var(--list-marker-color-alt);
+    --list-bullet-size: calc(#{$marker-size} * #{$optical-factor + 0.05});
+    transform: rotate(45deg);
+  }
+
+  .HyperMD-list-line-4 .list-bullet {
+    --list-marker-color: transparent;
+    --list-bullet-border: var(--list-marker-color-alt) var(--size-2-1) solid;
+    --list-bullet-size: calc(#{$marker-size} * #{$optical-factor} - var(--size-2-1));
+    --list-bullet-radius: 0;
+    transform: rotate(45deg);
+  }
+
+  ul > li > ul > li {
+    --list-marker-color: transparent;
+    --list-bullet-border: #{$marker-color} var(--size-2-1) solid;
+    --list-bullet-size: calc(#{$marker-size} - var(--size-2-1));
+
+    & > ul > li {
+      --list-bullet-size: calc(#{$marker-size} * #{$optical-factor - 0.4});
+      --list-bullet-radius: 0;
+      --list-marker-color: var(--list-marker-color-alt);
+      --deg: 45deg;
+
+      .list-bullet {
+        transform: rotate(var(--deg));
+      }
+
+      & > ul > li {
+        --list-bullet-size: calc(#{$marker-size} * #{$optical-factor} - var(--size-2-1));
+        --list-marker-color: transparent;
+
+        ul > li {
+          --list-bullet-radius: var(--radius-s);
+          --list-marker-color: #{$marker-color};
+        }
+      }
+    }
+  }
+
+  .callout-content ul {
+    --list-indent: 1.6em;
+
+    &.contains-task-list {
+      --list-indent: 0.4em;
+    }
+
+    &::before {
+      left: -0.7em;
+    }
+
+    li::marker {
+      --list-marker-color: transparent !important;
+    }
+
+    li::before {
+      content: '';
+      position: absolute;
+      width: var(--list-bullet-size);
+      height: var(--list-bullet-size);
+      background-color: var(--list-marker-color);
+      border-radius: var(--list-bullet-radius);
+      border: var(--list-bullet-border);
+      transform: translate(-0.9em, calc(var(--font-text-size) * var(--line-height-normal) / 2.5)) rotate(var(--deg, 0)); // only 3 or 4 will have --deg
+    }
+  }
+}

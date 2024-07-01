@@ -1,27 +1,109 @@
-/* .vitepress/theme/custom.css */
 :root {
+    --screen-width: 600px;
+    --vp-sidebar-width: 225px;
     --vp-c-brand-1: #646cff;
     --vp-c-brand-2: #747bff;
-    --vp-sidebar-width: 300px;
-    --vp-layout-max-width: 1700px;
+    --vp-layout-max-width: calc(var(--screen-width));
+
+    .VPDoc.has-aside .content-container {
+        max-width: calc(var(--vp-layout-max-width));
+    }
+
+    /*--vp-layout-max-width: 1700px;*/
     --vp-code-font-size: 17px;
     --vp-custom-block-font-size: 17px;
     --vp-custom-block-code-font-size: 17px;
+
+    --vp-font-family-base: "Inner";
+
+    .VPSidebarItem {
+        writing-mode: horizontal-tb !important;
+    }
 
     .content {
         font-size: 17px;
     }
 
-    .VPDoc.has-aside .content-container[data-v-39a288b8] {
-        max-width: 1000px
+    .vp-doc th {
+        font-size: 17px;
+    }
+
+    .vp-doc td {
+        font-size: 17px;
+    }
+
+    img {
+        display: block;
+        margin: auto;
+    }
+
+    .mermaid.my-class {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
     }
 }
 
 
+@media (min-width: 1400px) {
+    :root {
+        --screen-width: 1423px;
+        --vp-sidebar-width: calc(var(--vp-layout-max-width) * 0.18);
+        /* 右边栏当前页目录 */
 
-/*.VPDoc.has-aside .content-container[data-v-10119189] {*/
-/*    max-width: 1000px*/
-/*}*/
+        .VPDoc.has-aside .aside {
+            max-width: calc(var(--vp-layout-max-width) * 0.17);
+        }
+    }
+}
+
+@font-face {
+    font-family: Inter;
+}
+
+
+/* 16 寸*/
+@media (min-width: 1700px) {
+    :root {
+        --screen-width: 1706px;
+        --vp-sidebar-width: calc(var(--vp-layout-max-width) * 0.18);
+        /* 右边栏当前页目录 */
+
+        .VPDoc.has-aside .aside {
+            max-width: calc(var(--vp-layout-max-width) * 0.15);
+        }
+    }
+}
+
+/* 24 寸*/
+@media (min-width: 1900px) {
+    :root {
+        --screen-width: 1903px;
+        --vp-sidebar-width: calc(var(--vp-layout-max-width) * 0.18);
+        /* 右边栏当前页目录 */
+        .VPDoc.has-aside .aside {
+            max-width: calc(var(--vp-layout-max-width) * 0.13);
+            min-width: calc(var(--vp-layout-max-width) * 0.13);
+        }
+    }
+}
+
+.vp-doc table {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+
+.vp-doc table.thead {
+    width: 100%;
+}
+
+.vp-doc table.tbody {
+    width: 100%;
+}
+
+
+
 
 
 

@@ -1,0 +1,137 @@
+img {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* @font-face {
+    font-family: 'STIXTwoText';
+    src: url(./STIXTwoText.ttf);
+} */
+
+.markdown-source-view.mod-cm6 .cm-content > * {
+    margin: auto auto !important;
+}
+
+.text {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+};
+
+
+/* normal text outside of headings and code of editor */
+/* .cm-s-obsidian, .mod-single-child .cm-s-obsidian {
+  font-size: 18px;
+} */
+
+/* normal text outside of headings and code of preview
+.markdown-preview-view, .mod-single-child .markdown-preview-view {
+  font-size: 18px
+}
+*/
+/*
+preview padding too small*/
+/* .theme-light .markdown-preview-view, .theme-light .mod-single-child .markdown-preview-view {
+  font-size: var(--font-size-normal);
+} */
+
+/* code blocks in preview */
+pre code {
+  font-size: 17px !important;
+}
+.markdown-preview-view code {
+    font-size: 17px;
+}
+
+.markdown-preview-view h1 {
+    font-size: 30px;
+}
+
+.markdown-preview-view h1 > code {
+    font-size: 30px;
+}
+
+.markdown-preview-view h2 {
+    font-size: 24px;
+}
+
+.markdown-preview-view h2 > code {
+    font-size: 24px;
+}
+
+
+/* Editor CodeBlock TEXT Appearance */
+.cm-s-obsidian pre.HyperMD-codeblock {
+  font-size: 17px !important;
+}
+
+/* .search-result-file-matches, .search-empty-state {
+  font-size: var(--font-size-side-dock);
+}
+
+.workspace-leaf-content[data-type="tag"] .tag-pane-tag-count,
+.workspace-leaf-content[data-type="tag"] .tag-pane-tag-text {  
+  font-size: var(--font-size-side-dock);
+}
+
+.workspace-leaf-content[data-type="backlink"] .search-result-file-matches {
+  font-size: var(--font-size-side-dock);
+}
+
+
+
+/*status-bar*/
+/* .status-bar{
+  font-size: var(--font-size-status-bar);
+} */
+
+/* headings for editor and preview */
+/* .cm-header-1, .markdown-preview-view h1
+{
+  font-size: var(--font-size-h1);
+} */
+
+
+div.table {
+    text-align: center;
+}
+
+div.mermaid {
+    text-align: center;
+}
+
+body {
+    line-height: 1em;
+}
+
+span.cm-formatting-list-ul {
+    font-size: 18px;
+    font-family: "STIX2Text", "Times New Roman", "serif";
+}
+
+
+.markdown-preview-view code {
+    /* font-size: 17px; */
+    font-family: Consolas, 'Courier New', monospace;
+}
+
+.cm-s-obsidian .HyperMD-codeblock {
+    font-size: 17px;
+    font-family: Consolas, 'Courier New', monospace;
+}
+
+.cm-s-obsidian span.cm-inline-code {
+    font-size: 17px;
+    font-family: Consolas, 'Courier New', monospace;
+}
+
+table.dataview.table-view-table {
+	font-size: 17px;
+}
+
+table.dataview.table-view-table th {
+  font-size: 17px;
+}
+
+
+
+

@@ -1,0 +1,27 @@
+{
+  "spellcheckLanguages": null,
+  "pdfExportSettings": {
+    "includeName": true,
+    "pageSize": "A4",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 80
+  },
+  "spellcheck": false,
+  "newLinkFormat": "relative",
+  "readableLineLength": false,
+  "defaultViewMode": "source",
+  "autoConvertHtml": false,
+  "strictLineBreaks": true,
+  "foldIndent": false,
+  "livePreview": true,
+  "showLineNumber": false,
+  "showIndentGuide": false,
+  "vimMode": false,
+  "attachmentFolderPath": "figures",
+  "alwaysUpdateLinks": true,
+  "showInlineTitle": true,
+  "showFrontmatter": false,
+  "tabSize": 4,
+  "focusNewTab": true
+}

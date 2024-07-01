@@ -1,0 +1,62 @@
+body.theme-dark.image-dark-hover img {
+  filter: brightness(0.7);
+  transition: var(--animation);
+
+  &:hover {
+    filter: brightness(0.85);
+  }
+}
+
+img {
+  border-radius: var(--radius-l);
+  cursor: pointer;
+}
+
+/* hint text, reference from https://github.com/chrisgrieser/shimmering-focus */
+
+body.image-alt {
+
+  // centers image and image caption
+  .image-embed[alt] {
+    padding: var(--size-4-1) 0;
+
+    &::after {
+      display: block;
+      text-align: center;
+    }
+
+    &:not([alt$=".png"], [alt$=".jpg"], [alt$=".jpeg"], [alt$=".tiff"], [alt$=".webp"], [alt$=".bmp"])::after {
+      content: attr(alt);
+      font-size: var(--font-smaller);
+      color: var(--text-faint);
+    }
+  }
+
+  // .emoji class are Twitter Images for Emojis from Emoji Toolbar
+  .view-content img:not(.emoji) {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+/* scale on click, reference from blue-topaz */
+
+body.image-zoom {
+  :is(.markdown-preview-view, .workspace-leaf-content[data-type="image"]) img:not([class*="emoji"], .banner-image) {
+    cursor: zoom-in;
+
+    &:active {
+      overflow: hidden;
+      position: fixed;
+      object-fit: contain;
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      border-radius: 0;
+      inset: 0;
+      z-index: 200;
+      background-image: linear-gradient(to right, hsl(var(--background-primary-hsl)), hsl(var(--background-secondary-hsl)), hsl(var(--background-primary-hsl)));
+    }
+  }
+}

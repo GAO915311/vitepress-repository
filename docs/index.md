@@ -15,12 +15,13 @@ hero:
       link: /api-examples
 
 features:
-  - title: 通信算法
+  - title: 动态规划-线性DP
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
     link: /LeetCode/动态规划/线性DP
-  - title: Feature B
+  - title: 动态规划-背包DP
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
+  - title: vitepress 的使用语法
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    link: /markdown-examples
 ---
 

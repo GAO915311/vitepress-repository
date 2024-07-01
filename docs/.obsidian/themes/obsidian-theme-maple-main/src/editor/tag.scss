@@ -1,0 +1,37 @@
+body {
+  --tag-color: var(--accent-active);
+}
+
+.HyperMD-header .cm-hashtag {
+  font-size: var(--tag-size) !important;
+}
+
+:is(body, .print .markdown-rendered) {
+  --tag-padding-x: 0.4rem;
+  --tag-padding-y: 0.05rem;
+}
+
+.cm-line span.cm-hashtag {
+  vertical-align: baseline;
+}
+
+body.tag-click-to-edit .cm-line span.cm-hashtag:not(.cm-formatting) {
+  pointer-events: none;
+}
+
+body.tag-plain {
+  --tag-background: transparent;
+}
+
+body.tag-outline {
+  --tag-border-color: var(--setting-tag-outline, var(--accent-inactive)) !important;
+  --tag-border-width: var(--size-2-1) !important;
+  --tag-color: var(--setting-tag-color, var(--accent-active)) !important;
+}
+
+body.tag-colored {
+  --tag-background: var(--setting-tag-bg, var(--accent-active)) !important;
+  --tag-background-hover: var(--tag-background);
+  --tag-color: var(--text-on-accent);
+  --tag-color-hover: var(--tag-color);
+}
