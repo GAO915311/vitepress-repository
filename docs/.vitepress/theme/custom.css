@@ -1,4 +1,12 @@
 :root {
+    /* custom.css */
+    --vp-font-family-base: "Times New Roman";
+    --vp-font-family-mono: "Consolas";
+
+    .content {
+        font-size: 17px;
+    }
+
     --screen-width: 600px;
     --vp-sidebar-width: 225px;
     --vp-c-brand-1: #646cff;
@@ -9,20 +17,15 @@
         max-width: calc(var(--vp-layout-max-width));
     }
 
-    /*--vp-layout-max-width: 1700px;*/
     --vp-code-font-size: 17px;
     --vp-custom-block-font-size: 17px;
     --vp-custom-block-code-font-size: 17px;
 
-    --vp-font-family-base: "Inner";
 
     .VPSidebarItem {
         writing-mode: horizontal-tb !important;
     }
 
-    .content {
-        font-size: 17px;
-    }
 
     .vp-doc th {
         font-size: 17px;
@@ -57,10 +60,6 @@
     }
 }
 
-@font-face {
-    font-family: Inter;
-}
-
 
 /* 16 寸*/
 @media (min-width: 1700px) {
@@ -81,6 +80,7 @@
         --screen-width: 1903px;
         --vp-sidebar-width: calc(var(--vp-layout-max-width) * 0.18);
         /* 右边栏当前页目录 */
+
         .VPDoc.has-aside .aside {
             max-width: calc(var(--vp-layout-max-width) * 0.13);
             min-width: calc(var(--vp-layout-max-width) * 0.13);
@@ -101,9 +101,3 @@
 .vp-doc table.tbody {
     width: 100%;
 }
-
-
-
-
-
-

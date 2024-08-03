@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "My Awesome Project"
+  name: "QinBoom 的知识仓库"
   text: "A VitePress Site"
   tagline: My great project tagline
   actions:
@@ -13,6 +13,10 @@ hero:
     - theme: alt
       text: API Examples
       link: /api-examples
+    - theme: alt
+      text: API
+      link: /LeetCode/动态规划/前缀和
+      
 
 features:
   - title: 动态规划-线性DP

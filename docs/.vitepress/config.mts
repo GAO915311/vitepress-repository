@@ -3,10 +3,30 @@ import {withMermaid} from 'vitepress-plugin-mermaid'
 
 // https://vitepress.dev/reference/site-config
 export default withMermaid({
+    // transformHead({assets}) {
+    //     // 相应地调整正则表达式以匹配字体
+    //     // @ts-ignore
+    //     const myFontFile = assets.find(file => /Inner-Light\.\w+\.ttf/)
+    //     if (myFontFile) {
+    //         return [
+    //             [
+    //                 'link',
+    //                 {
+    //                     rel: 'preload',
+    //                     href: myFontFile,
+    //                     as: 'font',
+    //                     type: 'font/ttf',
+    //                     crossorigin: ''
+    //                 }
+    //             ]
+    //         ]
+    //     }
+    // },
     title: "QinBoom' repository",
     description: "QinBoom的知识仓库",
     cleanUrls: true,
     themeConfig: {
+        // css: ['./theme/custom-font.css'],
         // https://vitepress.dev/reference/default-theme-config
         nav: [
             {text: 'Home', link: '/'},
@@ -93,6 +113,7 @@ export default withMermaid({
                 items: [
                     {
                         text: '数据结构',
+                        collapsed: true,
                         items: [
                             {text: '基础数据结构', link: '/LeetCode/数据结构/基础数据结构'},
                             {text: '链表', link: '/LeetCode/数据结构/链表'},
@@ -101,6 +122,7 @@ export default withMermaid({
                     },
                     {
                         text: '动态规划',
+                        collapsed: true,
                         items: [
                             {text: '线性DP', link: '/LeetCode/动态规划/线性DP'},
                             {text: '区间DP', link: '/LeetCode/动态规划/区间DP'},
@@ -110,6 +132,7 @@ export default withMermaid({
                     },
                     {
                         text: '双指针、滑动窗口和二分',
+                        collapsed: true,
                         items: [
                             {text: '双指针', link: '/LeetCode/双指针、滑动窗口和二分/双指针'},
                             {text: '滑动窗口', link: '/LeetCode/双指针、滑动窗口和二分/滑动窗口'},
@@ -118,6 +141,7 @@ export default withMermaid({
                     },
                     {
                         text: '深度优先搜索和广度优先搜索',
+                        collapsed: true,
                         items: [
                             {text: '深度优先搜索', link: '/LeetCode/深度优先搜索和广度优先搜索/深度优先搜索（DFS）'},
                             {text: '回溯算法', link: '/LeetCode/深度优先搜索和广度优先搜索/回溯算法'},
@@ -125,7 +149,17 @@ export default withMermaid({
                         ]
                     }
                 ]
-            }
+            },
+            {
+                text: 'Android',
+                collapsed: true,
+                items: [
+                    {
+                        text: 'Activity的生命周期和启动模式',
+                        link: '/Android/Activity的生命周期和启动模式'
+                    }
+                ]
+            },
         ],
 
         socialLinks: [

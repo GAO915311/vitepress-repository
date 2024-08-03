@@ -1,12 +1,6 @@
 // .vitepress/theme/index.js
-import DefaultTheme from 'vitepress/theme'
+import DefaultTheme from 'vitepress/theme-without-fonts'
 import './custom.css'
+import './custom-font.css'
 
-export default {
-    ...DefaultTheme,
-    enhanceAppContext(ctx) {
-        ctx.app.provide('$cssVars', {
-            'content-max-width': '1000px'
-        })
-    }
-}
+export default DefaultTheme

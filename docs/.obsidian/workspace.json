@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "bc0920a9d33ce0d0",
+        "id": "2e1c75ff96c98052",
         "type": "tabs",
         "children": [
           {
-            "id": "0e40cce7a0d7edaf",
+            "id": "7fce62b84cb8aa4a",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Android/Activity的生命周期和启动模式.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -70,9 +66,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Android/Activity的生命周期和启动模式.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -96,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Android/Activity的生命周期和启动模式.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,7 +106,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Android/Activity的生命周期和启动模式.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
@@ -171,10 +163,11 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "0e40cce7a0d7edaf",
+  "active": "7fce62b84cb8aa4a",
   "lastOpenFiles": [
-    "Java SE/Java 8 新特性：Lambda 表达式、方法引用和 Stream 流.md",
     "Android/Activity的生命周期和启动模式.md",
+    "assets/fonts/material-symbols-outlined-latin-200-normal.ttf",
+    "Java SE/Java 8 新特性：Lambda 表达式、方法引用和 Stream 流.md",
     "Java SE/函数式编程.md",
     "Android",
     "LeetCode/深度优先搜索和广度优先搜索/广度优先搜索（BFS）.md~",
@@ -207,14 +200,12 @@
     "Git",
     "LeetCode/图论/多源 BFS.md",
     "Spring/SpringBoot 的自动装配.md",
-    "Spring/Spring.md",
     "figures/logo.png",
     "Java",
     "未命名.canvas",
     "figures/Pasted image 20230920211551.png",
     "figures/分布式存储项目/thread_pool_task_executor.svg",
     "docs/Redis原理篇.pdf",
-    "project_note",
     "未命名 1.canvas",
     "figures/day3_1.png",
     "figures/day3_2.png",

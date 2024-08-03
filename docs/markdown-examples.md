@@ -1,5 +1,11 @@
 # Markdown Extension Examples
 
+VitePress is a Static Site Generator fast
+字体和字体之间的区别
+windows $\mathrm{windows}$ windows Markdown vitepress index.js
+
+This page demonstrates some fo the built-in markdown extensions provided by VitePress.
+
 This page demonstrates some of the built-in markdown extensions provided by VitePress.
 
 # VitePress 使用策略
@@ -11,16 +17,24 @@ This page demonstrates some of the built-in markdown extensions provided by Vite
 :tada
 
 ## wiki 的内部引用
-[统计不同的回文子序列](./LeetCode/动态规划/背包DP/#474-一和零)
 
-[单串问题](/LeetCode/双指针、滑动窗口和二分/滑动窗口#lc-3-无重复字符的最长子串)
+要注意文件的相对路径。
+
+情况 1：
+```md
+LeetCode
+    动态规划
+        前缀和.md
+        线性DP.md
+markdown-examples.md
+```
 
 语法规则为：
 
-```md
-[统计不同的回文子序列](./LeetCode/动态规划/#最长回文子串)
-```
-12^2, hello world.
+[lc-115-不同的子序列](./LeetCode/动态规划/线性DP#lc-115-不同的子序列)
+
+12<sup>2</sup> 这样也可以
+23<sub>3</sub> , hello world.
 
 :100
 
